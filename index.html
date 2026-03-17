@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>51Talk - Final GitHub Card</title>
+    <title>51Talk - Updated Logo Size</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -29,7 +29,6 @@
 
         .content-layer { position: relative; z-index: 10; padding: 2.5rem 1.5rem; text-align: center; }
         
-        /* صناديق شفافة بيضاء للنصوص لتكون واضحة على الخلفية الزرقاء */
         .glass-item { background: rgba(255, 255, 255, 0.95); border-radius: 1.5rem; padding: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .text-glow { text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
 
@@ -43,7 +42,7 @@
         
         <div class="content-layer">
             <div class="flex items-center justify-between mb-6">
-                <img src="logo.png" alt="51Talk" class="h-12 w-auto object-contain" crossorigin="anonymous">
+                <img src="logo.png" alt="51Talk" class="h-24 w-auto object-contain" crossorigin="anonymous">
                 <div class="bg-white px-5 py-2 rounded-xl shadow-md">
                     <h2 id="display-consultant" class="text-lg font-black text-blue-900">البندري</h2>
                 </div>
@@ -92,9 +91,6 @@
             <input type="text" id="input-student" placeholder="اسم صديق الطالب" class="w-full bg-gray-50 border p-4 rounded-2xl text-right font-bold" oninput="updateCard()">
             <input type="text" id="input-consultant" placeholder="اسم المستشار" class="w-full bg-gray-50 border p-4 rounded-2xl text-right font-bold" oninput="updateCard()">
             <input type="text" id="input-phone" placeholder="962775552764" class="w-full bg-gray-50 border p-4 rounded-2xl text-right font-bold" oninput="updateCard()">
-            <button onclick="saveCard()" class="w-full bg-blue-950 text-white font-black py-5 rounded-2xl shadow-lg hover:bg-blue-900 transition-all">
-                📸 حفظ الصورة النهائية (بالخلفية الجديدة)
-            </button>
         </div>
     </div>
 
@@ -113,22 +109,6 @@
             const cleanPhone = phone.replace(/\s/g, '').replace('+', '');
             qrcode.clear();
             qrcode.makeCode(`https://wa.me/${cleanPhone}?text=${encodeURIComponent('مرحبا ' + consultant + '، انا من طرف ' + student + '، أرغب في حجز حصة تجريبية')}`);
-        }
-
-        function saveCard() {
-            const card = document.getElementById('referral-card');
-            const btn = event.currentTarget;
-            btn.innerText = "جاري الحفظ..."; btn.disabled = true;
-
-            html2canvas(card, {
-                scale: 3, useCORS: true, backgroundColor: null,
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `51Talk-GiftCard.png`;
-                link.href = canvas.toDataURL("image/png");
-                link.click();
-                btn.innerText = "📸 حفظ الصورة النهائية (بالخلفية الجديدة)"; btn.disabled = false;
-            });
         }
         updateCard();
     </script>

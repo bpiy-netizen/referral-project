@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>51Talk - Final Fix</title>
+    <title>51Talk - Final Arabic Fix</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        /* استخدام خطوط النظام لضمان ثبات الحروف العربية عند الحفظ */
-        body, * { font-family: Arial, Helvetica, sans-serif !important; }
+        /* استخدام خطوط النظام الأساسية لضمان ثبات الحروف العربية عند الحفظ كصورة */
+        body, * { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important; }
         
         .golden-card { 
             background: linear-gradient(135deg, #f6e8b1 0%, #fdf5d7 100%);
             border: 12px solid white;
         }
-        
-        /* تحسين استقرار النصوص العربية */
-        .ar-text {
+
+        /* حاوية خاصة لضمان عدم قلب الحروف */
+        .stable-text {
             direction: rtl !important;
-            unicode-bidi: isolate !important;
+            unicode-bidi: bidi-override !important;
             text-align: center !important;
-            display: inline-block !important;
-            white-space: nowrap !important;
+            display: block !important;
         }
 
         #qrcode canvas, #qrcode img {
@@ -33,35 +32,35 @@
         @media print { .no-print { display: none; } }
     </style>
 </head>
-<body class="p-4 bg-gray-100">
+<body class="p-4 bg-gray-50">
 
     <div id="referral-card" class="max-w-md w-full golden-card rounded-[3rem] overflow-hidden relative p-8 mx-auto text-center">
         
         <div class="flex flex-col items-center mb-6 gap-4">
-            <img src="logo.png" alt="51Talk" class="h-20 w-auto">
+            <img src="logo.png" alt="51Talk" class="h-16 w-auto">
             <div class="bg-white/80 px-6 py-2 rounded-xl border border-white w-full">
-                <div class="ar-text text-[10px] text-blue-900/60 font-bold block mb-1">المستشار التعليمي المعتمد</div>
-                <div id="display-consultant" class="ar-text text-xl font-black text-blue-950 block">البندري</div>
+                <span class="stable-text text-[10px] text-blue-900/60 font-bold">المستشار التعليمي المعتمد</span>
+                <span id="display-consultant" class="stable-text text-xl font-black text-blue-950">البندري</span>
             </div>
         </div>
 
         <div class="mb-6">
-            <div class="ar-text text-blue-800 font-bold mb-2 block">إهداء حصري وخاص من <span id="display-student" class="text-red-600">........</span></div>
-            <div class="ar-text text-2xl font-black text-blue-950 block leading-tight mb-6">ابدأ تعلّم اللغة الانجليزية مع 51talk</div>
+            <div class="stable-text text-blue-800 font-bold mb-2">إهداء حصري وخاص من <span id="display-student" class="text-red-600">........</span></div>
+            <div class="stable-text text-2xl font-black text-blue-950 leading-tight mb-6 italic">ابدأ تعلّم اللغة الانجليزية مع 51talk</div>
             
-            <div class="grid grid-cols-2 gap-2 mb-6 text-[10px] font-bold">
-                <div class="bg-white/50 p-2 rounded-xl border border-white">🌍 منصة عالمية</div>
-                <div class="bg-white/50 p-2 rounded-xl border border-white">🎁 حصة مجانية</div>
-                <div class="bg-white/50 p-2 rounded-xl border border-white">🗣️ تحدث بطلاقة</div>
-                <div class="bg-white/50 p-2 rounded-xl border border-white">⏳ حصص فردية</div>
+            <div class="grid grid-cols-2 gap-2 mb-6">
+                <div class="bg-white/50 p-2 rounded-xl border border-white text-[10px] font-bold">🌍 منصة عالمية</div>
+                <div class="bg-white/50 p-2 rounded-xl border border-white text-[10px] font-bold">🎁 حصة مجانية</div>
+                <div class="bg-white/50 p-2 rounded-xl border border-white text-[10px] font-bold">🗣️ تحدث بطلاقة</div>
+                <div class="bg-white/50 p-2 rounded-xl border border-white text-[10px] font-bold">⏳ حصص فردية</div>
             </div>
 
             <div class="bg-blue-900/5 rounded-2xl p-4 border border-blue-900/10">
-                <div class="ar-text text-[10px] font-bold text-blue-900/70 mb-3 block italic">حدد مسارك التعليمي المفضل:</div>
+                <div class="stable-text text-[11px] font-bold text-blue-900/70 mb-3 underline">اختر مسارك التعليمي المفضل:</div>
                 <div class="flex flex-wrap justify-center gap-2">
-                    <span class="bg-white/80 px-3 py-1 rounded-full text-[9px] font-bold text-blue-950 border border-white shadow-sm">💼 إنجليزية الأعمال</span>
-                    <span class="bg-white/80 px-3 py-1 rounded-full text-[9px] font-bold text-blue-950 border border-white shadow-sm">🌟 المسار الكلاسيكي</span>
-                    <span class="bg-white/80 px-3 py-1 rounded-full text-[9px] font-bold text-blue-950 border border-white shadow-sm">🎓 تحضير الايلتس</span>
+                    <span class="bg-white px-3 py-1 rounded-full text-[9px] font-bold text-blue-950 border border-blue-200">💼 إنجليزية الأعمال</span>
+                    <span class="bg-white px-3 py-1 rounded-full text-[9px] font-bold text-blue-950 border border-blue-200">🌟 المسار الكلاسيكي</span>
+                    <span class="bg-white px-3 py-1 rounded-full text-[9px] font-bold text-blue-950 border border-blue-200">🎓 تحضير الايلتس</span>
                 </div>
             </div>
         </div>
@@ -70,7 +69,7 @@
             <div class="bg-white p-2 rounded-2xl shadow-xl mb-3">
                 <div id="qrcode"></div>
             </div>
-            <div class="ar-text text-blue-950 font-bold text-xs mb-2 block">امسح الكود للحجز المباشر</div>
+            <div class="stable-text text-blue-950 font-bold text-xs mb-2">امسح الكود للحجز المباشر</div>
             
             <div class="flex items-center gap-2 mb-6 bg-white/90 px-4 py-1 rounded-full border border-green-200 shadow-sm font-bold text-green-700">
                 <span>WhatsApp:</span>
@@ -89,15 +88,15 @@
             <input type="text" id="input-student" placeholder="اسم صديق الطالب" class="w-full bg-gray-50 border p-3 rounded-xl outline-none text-right font-bold" oninput="updateCard()">
             <input type="text" id="input-consultant" placeholder="اسم المستشار" class="w-full bg-gray-50 border p-3 rounded-xl outline-none text-right font-bold" oninput="updateCard()">
             <input type="text" id="input-phone" placeholder="962775552764" class="w-full bg-gray-50 border p-3 rounded-xl outline-none text-right font-bold" oninput="updateCard()">
-            <button onclick="saveCard()" class="w-full bg-blue-950 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-900">
-                📸 حفظ البطاقة (إصلاح شامل للحروف)
+            <button onclick="saveCard()" class="w-full bg-blue-950 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-900 transition-all">
+                📸 حفظ البطاقة (إصلاح المسارات)
             </button>
         </div>
     </div>
 
     <script>
         let qrcode = new QRCode(document.getElementById("qrcode"), {
-            width: 150, height: 150, colorDark : "#000000", colorLight : "#ffffff", correctLevel : QRCode.CorrectLevel.H
+            width: 140, height: 140, colorDark : "#000000", colorLight : "#ffffff", correctLevel : QRCode.CorrectLevel.H
         });
 
         function updateCard() {
@@ -124,16 +123,21 @@
                 html2canvas(card, {
                     scale: 3,
                     useCORS: true,
-                    backgroundColor: "#f3f4f6",
-                    letterRendering: true, // تفعيل رندر الحروف الفردية
+                    backgroundColor: "#f9fafb",
+                    onclone: (clonedDoc) => {
+                        // إجبار المتصفح على تثبيت الاتجاه في النسخة المحفوظة
+                        clonedDoc.querySelectorAll('.stable-text').forEach(el => {
+                            el.style.direction = 'rtl';
+                        });
+                    }
                 }).then(canvas => {
                     const link = document.createElement('a');
-                    link.download = `51Talk-GiftCard.png`;
+                    link.download = `51Talk-GiftCard-Fixed.png`;
                     link.href = canvas.toDataURL("image/png", 1.0);
                     link.click();
-                    btn.innerText = "📸 حفظ البطاقة (إصلاح شامل للحروف)"; btn.disabled = false;
+                    btn.innerText = "📸 حفظ البطاقة (إصلاح المسارات)"; btn.disabled = false;
                 });
-            }, 500);
+            }, 400);
         }
         updateCard();
     </script>

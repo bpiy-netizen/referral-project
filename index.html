@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بطاقة إهداء 51Talk</title>
+    <title>بطاقة إهداء 51Talk الاحترافية</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
@@ -11,82 +11,86 @@
         body { font-family: 'Cairo', sans-serif; background-color: #f3f4f6; }
         .golden-bg { background-color: #f6e8b1; }
         .card-shadow { box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .course-badge { background: rgba(255, 255, 255, 0.5); border: 1px solid rgba(255,255,255,0.8); transition: all 0.3s; }
         @media print { .no-print { display: none; } }
     </style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen p-4">
 
-    <div id="referral-card" class="max-w-2xl w-full golden-bg rounded-[3rem] overflow-hidden card-shadow relative border-[10px] border-white p-8 md:p-12">
+    <div id="referral-card" class="max-w-2xl w-full golden-bg rounded-[3rem] overflow-hidden card-shadow relative border-[10px] border-white p-6 md:p-10">
         
-        <div class="flex flex-col md:flex-row items-center justify-between mb-10 gap-6">
-            <img src="logo.png" alt="51Talk" class="h-24 md:h-28 w-auto object-contain" onerror="this.alt='51Talk Logo'">
+        <div class="flex flex-col md:flex-row items-center justify-between mb-8 gap-6">
+            <img src="logo.png" alt="51Talk" class="h-20 md:h-24 w-auto object-contain" onerror="this.alt='51Talk Logo'">
             
-            <div class="text-center md:text-left bg-white/60 px-6 py-4 rounded-2xl border border-white/50 shadow-sm">
-                <p class="text-[10px] text-gray-500 font-bold uppercase">المستشار التعليمي المعتمد:</p>
-                <h2 id="display-consultant" class="text-2xl font-bold text-blue-950">البندري</h2>
+            <div class="text-center md:text-left bg-white/60 px-6 py-3 rounded-2xl border border-white/50 shadow-sm">
+                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">المستشار التعليمي المعتمد</p>
+                <h2 id="display-consultant" class="text-xl font-bold text-blue-950 leading-tight">البندري</h2>
             </div>
         </div>
 
-        <div class="text-center mb-10">
-            <h3 class="text-blue-800 font-bold mb-2">إهداء حصري وخاص من <span id="display-student" class="text-red-600 underline">........</span></h3>
-            <h1 class="text-3xl md:text-5xl font-black text-blue-950 leading-tight mb-8">ابدأ تعلّم اللغة الانجليزية مع 51talk</h1>
+        <div class="text-center mb-8">
+            <h3 class="text-blue-800 font-bold mb-2">إهداء حصري وخاص من <span id="display-student" class="text-red-600 underline decoration-wavy">........</span></h3>
+            <h1 class="text-2xl md:text-4xl font-black text-blue-950 leading-tight mb-6">ابدأ تعلّم اللغة الانجليزية مع 51talk</h1>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-right max-w-xl mx-auto text-sm md:text-base">
-                <div class="flex items-center gap-3 bg-white/40 p-3 rounded-2xl border border-white/50">
-                    <span class="text-xl">🌍</span>
-                    <p class="text-gray-800 font-bold">منصة عالمية ومعلمين أجانب</p>
+            <div class="grid grid-cols-2 gap-3 mb-8 text-[11px] md:text-sm">
+                <div class="flex items-center gap-2 bg-white/40 p-2 rounded-xl border border-white/50">
+                    <span>🌍</span> <p class="text-gray-800 font-bold">منصة عالمية</p>
                 </div>
-                <div class="flex items-center gap-3 bg-white/40 p-3 rounded-2xl border border-white/50">
-                    <span class="text-xl">🎁</span>
-                    <p class="text-gray-800 font-bold">حصة تجريبية مجانية تماماً</p>
+                <div class="flex items-center gap-2 bg-white/40 p-2 rounded-xl border border-white/50">
+                    <span>🎁</span> <p class="text-gray-800 font-bold">حصة تجريبية مجانية</p>
                 </div>
-                <div class="flex items-center gap-3 bg-white/40 p-3 rounded-2xl border border-white/50">
-                    <span class="text-xl">🗣️</span>
-                    <p class="text-gray-800 font-bold">تركيز على التحدث بطلاقة</p>
+                <div class="flex items-center gap-2 bg-white/40 p-2 rounded-xl border border-white/50">
+                    <span>🗣️</span> <p class="text-gray-800 font-bold">تركيز على التحدث</p>
                 </div>
-                <div class="flex items-center gap-3 bg-white/40 p-3 rounded-2xl border border-white/50">
-                    <span class="text-xl">⏳</span>
-                    <p class="text-gray-800 font-bold">حصص فردية وأوقات مرنة</p>
+                <div class="flex items-center gap-2 bg-white/40 p-2 rounded-xl border border-white/50">
+                    <span>⏳</span> <p class="text-gray-800 font-bold">حصص فردية مرنة</p>
+                </div>
+            </div>
+
+            <div class="bg-blue-950/5 rounded-3xl p-4 border border-blue-950/10">
+                <p class="text-xs font-bold text-blue-900 mb-3 opacity-70">اختر مسارك التعليمي المفضل:</p>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <span class="course-badge px-4 py-2 rounded-full text-[10px] md:text-xs font-black text-blue-950 shadow-sm">💼 إنجليزية الأعمال</span>
+                    <span class="course-badge px-4 py-2 rounded-full text-[10px] md:text-xs font-black text-blue-950 shadow-sm">🌟 المسار الكلاسيكي</span>
+                    <span class="course-badge px-4 py-2 rounded-full text-[10px] md:text-xs font-black text-blue-950 shadow-sm">🎓 تحضير الايلتس</span>
                 </div>
             </div>
         </div>
 
-        <div class="flex flex-col items-center border-t border-blue-900/10 pt-8">
-            <div class="bg-white p-4 rounded-[2.5rem] shadow-xl mb-4 border-4 border-blue-900">
+        <div class="flex flex-col items-center border-t border-blue-900/10 pt-6">
+            <div class="bg-white p-3 rounded-[2rem] shadow-xl mb-4 border-4 border-blue-950/20">
                 <div id="qrcode"></div>
             </div>
             
-            <p class="text-blue-950 font-black mb-2 text-lg text-center">
-                امسح الكود للحجز المباشر عبر الواتساب
-            </p>
+            <p class="text-blue-950 font-black mb-2 text-sm md:text-md">احجز حصتك التجريبية الآن</p>
             
-            <div class="flex items-center gap-2 mb-8 bg-green-50 px-4 py-1 rounded-full border border-green-200 shadow-sm">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                <span id="display-phone" class="text-green-700 font-bold text-lg leading-none pt-1">+962 77 555 2764</span>
+            <div class="flex items-center gap-2 mb-6 bg-green-50 px-4 py-1 rounded-full border border-green-200 shadow-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span id="display-phone" class="text-green-700 font-bold text-md leading-none pt-1">+962 77 555 2764</span>
             </div>
 
-            <div class="flex items-center gap-12 bg-white/80 px-12 py-6 rounded-[2.5rem] shadow-sm">
-                <img src="tabby.png" alt="Tabby" class="h-10 w-auto">
-                <div class="w-px h-10 bg-gray-300"></div>
-                <img src="tamara.png" alt="Tamara" class="h-10 w-auto">
+            <div class="flex items-center gap-8 bg-white/80 px-10 py-4 rounded-[2rem] shadow-sm">
+                <img src="tabby.png" alt="Tabby" class="h-8 w-auto">
+                <div class="w-px h-8 bg-gray-300"></div>
+                <img src="tamara.png" alt="Tamara" class="h-8 w-auto">
             </div>
         </div>
     </div>
 
-    <div class="mt-10 bg-white p-8 rounded-3xl shadow-xl border border-gray-200 w-full max-w-md no-print text-center">
-        <h3 class="font-bold text-blue-900 mb-4 border-b pb-2">لوحة تخصيص الهدية</h3>
-        <div class="space-y-4">
-            <input type="text" id="input-student" placeholder="اسم صديق الطالب" class="w-full bg-gray-50 border p-4 rounded-2xl outline-none focus:ring-2 focus:ring-red-500 font-bold" oninput="updateCard()">
-            <input type="text" id="input-consultant" placeholder="اسمك كمستشار" class="w-full bg-gray-50 border p-4 rounded-2xl outline-none focus:ring-2 focus:ring-blue-500 font-bold" oninput="updateCard()">
-            <input type="text" id="input-phone" placeholder="رقم الواتساب" class="w-full bg-gray-50 border p-4 rounded-2xl outline-none focus:ring-2 focus:ring-green-500 font-bold" oninput="updateCard()">
+    <div class="mt-8 bg-white p-6 rounded-3xl shadow-xl border border-gray-200 w-full max-w-md no-print text-center">
+        <h3 class="font-bold text-blue-900 mb-4 border-b pb-2 text-sm">تخصيص الهدية</h3>
+        <div class="space-y-3">
+            <input type="text" id="input-student" placeholder="اسم صديق الطالب" class="w-full bg-gray-50 border p-3 rounded-xl outline-none focus:ring-2 focus:ring-red-500 text-sm font-bold" oninput="updateCard()">
+            <input type="text" id="input-consultant" placeholder="اسمك كمستشار" class="w-full bg-gray-50 border p-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-sm font-bold" oninput="updateCard()">
+            <input type="text" id="input-phone" placeholder="962775552764" class="w-full bg-gray-50 border p-3 rounded-xl outline-none focus:ring-2 focus:ring-green-500 text-sm font-bold" oninput="updateCard()">
         </div>
     </div>
 
     <script>
         let qrcode = new QRCode(document.getElementById("qrcode"), {
             text: "https://wa.me/962775552764",
-            width: 160,
-            height: 160,
+            width: 140,
+            height: 140,
             colorDark : "#172554",
             colorLight : "#ffffff",
             correctLevel : QRCode.CorrectLevel.H

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>51Talk - Local Background Fix</title>
+    <title>51Talk - Final GitHub Card</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -14,14 +14,12 @@
         #referral-card {
             position: relative;
             width: 100%;
-            max-width: 550px;
+            max-width: 500px;
             border-radius: 3.5rem;
             overflow: hidden;
-            background: #ffffff;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
         }
 
-        /* استدعاء الخلفية كصورة محلية ثابتة */
         .card-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -29,51 +27,61 @@
             z-index: 1;
         }
 
-        .content-layer { position: relative; z-index: 10; padding: 3rem 2rem; text-align: center; }
-        .qr-wrapper { background: white; padding: 12px; border-radius: 2rem; display: inline-block; box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+        .content-layer { position: relative; z-index: 10; padding: 2.5rem 1.5rem; text-align: center; }
+        
+        /* صناديق شفافة بيضاء للنصوص لتكون واضحة على الخلفية الزرقاء */
+        .glass-item { background: rgba(255, 255, 255, 0.95); border-radius: 1.5rem; padding: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .text-glow { text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+
         @media print { .no-print { display: none; } }
     </style>
 </head>
 <body class="p-4">
 
     <div id="referral-card">
-        <img src="my-bg.jpg" class="card-bg">
+        <img src="https://raw.githubusercontent.com/bpiy-netizen/referral-project/refs/heads/main/my-bg.JPG" class="card-bg" crossorigin="anonymous">
         
         <div class="content-layer">
-            <div class="flex items-center justify-between mb-8">
-                <img src="logo.png" alt="51Talk" class="h-14 w-auto object-contain">
-                <div class="bg-white/90 px-6 py-2 rounded-2xl shadow-sm border border-blue-50">
-                    <h2 id="display-consultant" class="text-xl font-black text-blue-900">البندري</h2>
+            <div class="flex items-center justify-between mb-6">
+                <img src="logo.png" alt="51Talk" class="h-12 w-auto object-contain" crossorigin="anonymous">
+                <div class="bg-white px-5 py-2 rounded-xl shadow-md">
+                    <h2 id="display-consultant" class="text-lg font-black text-blue-900">البندري</h2>
                 </div>
             </div>
 
-            <div class="mb-8">
-                <h3 class="text-blue-800 font-bold mb-3">إهداء حصري وخاص من <span id="display-student" class="text-red-600 font-black">........</span></h3>
-                <h1 class="text-3xl md:text-4xl font-black text-blue-950 leading-tight mb-8">ابدأ تعلّم اللغة الانجليزية مع 51talk</h1>
+            <div class="mb-6">
+                <h3 class="text-white font-bold mb-2 text-glow">إهداء حصري وخاص من <span id="display-student" class="text-yellow-400 font-black">........</span></h3>
+                <h1 class="text-3xl font-black text-white leading-tight mb-8 text-glow">ابدأ تعلّم اللغة الانجليزية مع 51talk</h1>
                 
-                <div class="grid grid-cols-2 gap-4 mb-6">
-                    <div class="flex items-center gap-2 bg-white/95 p-4 rounded-2xl shadow-sm border border-white">
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    <div class="flex items-center gap-2 glass-item">
                         <span class="text-xl">🌍</span> <p class="text-blue-950 font-bold text-[10px]">منصة عالمية ومعلمين أجانب</p>
                     </div>
-                    <div class="flex items-center gap-2 bg-white/95 p-4 rounded-2xl shadow-sm border border-white">
+                    <div class="flex items-center gap-2 glass-item">
                         <span class="text-xl">🎁</span> <p class="text-blue-950 font-bold text-[10px]">حصة تقييمية مجانية</p>
+                    </div>
+                    <div class="flex items-center gap-2 glass-item">
+                        <span class="text-xl">🗣️</span> <p class="text-blue-950 font-bold text-[10px]">التركيز على التحدث بطلاقة</p>
+                    </div>
+                    <div class="flex items-center gap-2 glass-item">
+                        <span class="text-xl">⏳</span> <p class="text-blue-950 font-bold text-[10px]">حصص فردية وأوقات مرنة</p>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-4">
-                <div class="qr-wrapper mb-4">
+            <div class="mt-2">
+                <div class="bg-white p-3 rounded-3xl inline-block shadow-xl mb-4">
                     <div id="qrcode"></div>
                 </div>
-                <p class="text-blue-950 font-black mb-4 text-lg italic">امسح الكود للحجز المباشر</p>
+                <p class="text-white font-black mb-4 text-lg italic text-glow">امسح الكود للحجز المباشر</p>
                 
-                <div class="inline-flex items-center gap-2 bg-white/95 px-8 py-3 rounded-full border border-green-100 shadow-md mb-8">
+                <div class="inline-flex items-center gap-2 bg-white px-8 py-3 rounded-full shadow-lg mb-8">
                     <span id="display-phone" class="text-green-700 font-black text-2xl tracking-tighter">+962 77 555 2764</span>
                 </div>
 
-                <div class="flex items-center justify-center gap-8 bg-white/40 py-4 rounded-3xl border border-white/50">
-                    <img src="tabby.png" class="h-6 w-auto">
-                    <img src="tamara.png" class="h-6 w-auto">
+                <div class="flex items-center justify-center gap-8 bg-white/20 backdrop-blur-md py-4 rounded-3xl border border-white/30">
+                    <img src="tabby.png" class="h-6 w-auto" crossorigin="anonymous">
+                    <img src="tamara.png" class="h-6 w-auto" crossorigin="anonymous">
                 </div>
             </div>
         </div>
@@ -81,18 +89,18 @@
 
     <div class="mt-8 w-full max-w-md bg-white p-6 rounded-3xl shadow-xl no-print mx-auto">
         <div class="space-y-4">
-            <input type="text" id="input-student" placeholder="اسم الطالب" class="w-full bg-gray-50 border p-4 rounded-2xl text-right font-bold" oninput="updateCard()">
+            <input type="text" id="input-student" placeholder="اسم صديق الطالب" class="w-full bg-gray-50 border p-4 rounded-2xl text-right font-bold" oninput="updateCard()">
             <input type="text" id="input-consultant" placeholder="اسم المستشار" class="w-full bg-gray-50 border p-4 rounded-2xl text-right font-bold" oninput="updateCard()">
             <input type="text" id="input-phone" placeholder="962775552764" class="w-full bg-gray-50 border p-4 rounded-2xl text-right font-bold" oninput="updateCard()">
             <button onclick="saveCard()" class="w-full bg-blue-950 text-white font-black py-5 rounded-2xl shadow-lg hover:bg-blue-900 transition-all">
-                📸 حفظ الصورة النهائية
+                📸 حفظ الصورة النهائية (بالخلفية الجديدة)
             </button>
         </div>
     </div>
 
     <script>
         let qrcode = new QRCode(document.getElementById("qrcode"), {
-            width: 170, height: 170, colorDark : "#172554", colorLight : "#ffffff", correctLevel : QRCode.CorrectLevel.H
+            width: 160, height: 160, colorDark : "#172554", colorLight : "#ffffff", correctLevel : QRCode.CorrectLevel.H
         });
 
         function updateCard() {
@@ -113,15 +121,13 @@
             btn.innerText = "جاري الحفظ..."; btn.disabled = true;
 
             html2canvas(card, {
-                scale: 3,
-                useCORS: true,
-                backgroundColor: null,
+                scale: 3, useCORS: true, backgroundColor: null,
             }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = `51Talk-GiftCard-Fixed.png`;
+                link.download = `51Talk-GiftCard.png`;
                 link.href = canvas.toDataURL("image/png");
                 link.click();
-                btn.innerText = "📸 حفظ الصورة النهائية"; btn.disabled = false;
+                btn.innerText = "📸 حفظ الصورة النهائية (بالخلفية الجديدة)"; btn.disabled = false;
             });
         }
         updateCard();

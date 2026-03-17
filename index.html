@@ -3,20 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>51Talk - Final Professional Fix</title>
+    <title>51Talk - Final GitHub Card</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Cairo', sans-serif; background: #f3f4f6; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        #referral-card { position: relative; width: 100%; max-width: 500px; border-radius: 3.5rem; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.2); background: #1e3a8a; }
-        .card-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+        
+        #referral-card {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 3.5rem;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .card-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
         .content-layer { position: relative; z-index: 10; padding: 2.5rem 1.5rem; text-align: center; }
+        
+        /* صناديق شفافة بيضاء للنصوص لتكون واضحة على الخلفية الزرقاء */
         .glass-item { background: rgba(255, 255, 255, 0.95); border-radius: 1.5rem; padding: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .text-glow { text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
-        /* ضمان ظهور الـ QR فوق كل شيء */
-        #qrcode { display: inline-block; }
+
         @media print { .no-print { display: none; } }
     </style>
 </head>
@@ -44,17 +60,22 @@
                     <div class="flex items-center gap-2 glass-item">
                         <span class="text-xl">🎁</span> <p class="text-blue-950 font-bold text-[10px]">حصة تقييمية مجانية</p>
                     </div>
+                    <div class="flex items-center gap-2 glass-item">
+                        <span class="text-xl">🗣️</span> <p class="text-blue-950 font-bold text-[10px]">التركيز على التحدث بطلاقة</p>
+                    </div>
+                    <div class="flex items-center gap-2 glass-item">
+                        <span class="text-xl">⏳</span> <p class="text-blue-950 font-bold text-[10px]">حصص فردية وأوقات مرنة</p>
+                    </div>
                 </div>
             </div>
 
             <div class="mt-2">
-                <div style="background: white !important; padding: 15px; border-radius: 25px; display: inline-block; margin-bottom: 15px;">
+                <div class="bg-white p-3 rounded-3xl inline-block shadow-xl mb-4">
                     <div id="qrcode"></div>
                 </div>
-                
                 <p class="text-white font-black mb-4 text-lg italic text-glow">امسح الكود للحجز المباشر</p>
                 
-                <div class="inline-flex items-center gap-2 bg-white px-8 py-3 rounded-full shadow-lg mb-8" style="background: white !important;">
+                <div class="inline-flex items-center gap-2 bg-white px-8 py-3 rounded-full shadow-lg mb-8">
                     <span id="display-phone" class="text-green-700 font-black text-2xl tracking-tighter">+962 77 555 2764</span>
                 </div>
 
@@ -72,7 +93,7 @@
             <input type="text" id="input-consultant" placeholder="اسم المستشار" class="w-full bg-gray-50 border p-4 rounded-2xl text-right font-bold" oninput="updateCard()">
             <input type="text" id="input-phone" placeholder="962775552764" class="w-full bg-gray-50 border p-4 rounded-2xl text-right font-bold" oninput="updateCard()">
             <button onclick="saveCard()" class="w-full bg-blue-950 text-white font-black py-5 rounded-2xl shadow-lg hover:bg-blue-900 transition-all">
-                📸 حفظ الصورة (حل مشكلة الاختفاء)
+                📸 حفظ الصورة النهائية (بالخلفية الجديدة)
             </button>
         </div>
     </div>
@@ -94,33 +115,19 @@
             qrcode.makeCode(`https://wa.me/${cleanPhone}?text=${encodeURIComponent('مرحبا ' + consultant + '، انا من طرف ' + student + '، أرغب في حجز حصة تجريبية')}`);
         }
 
-        async function saveCard() {
+        function saveCard() {
             const card = document.getElementById('referral-card');
             const btn = event.currentTarget;
-            btn.innerText = "جاري المعالجة..."; btn.disabled = true;
-
-            // حل مشكلة السواد والاختفاء: انتظار بسيط لضمان رندر العناصر
-            await new Promise(resolve => setTimeout(resolve, 500));
+            btn.innerText = "جاري الحفظ..."; btn.disabled = true;
 
             html2canvas(card, {
-                scale: 3,
-                useCORS: true,
-                allowTaint: false,
-                backgroundColor: null,
-                logging: false,
-                onclone: (clonedDoc) => {
-                    // إجبار العناصر على الظهور في النسخة المستنسخة
-                    const qr = clonedDoc.getElementById('qrcode');
-                    const phone = clonedDoc.getElementById('display-phone');
-                    if(qr) qr.style.opacity = "1";
-                    if(phone) phone.style.color = "#15803d"; // أخضر غامق
-                }
+                scale: 3, useCORS: true, backgroundColor: null,
             }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = `51Talk-GiftCard.png`;
-                link.href = canvas.toDataURL("image/png", 1.0);
+                link.href = canvas.toDataURL("image/png");
                 link.click();
-                btn.innerText = "📸 حفظ الصورة (حل مشكلة الاختفاء)"; btn.disabled = false;
+                btn.innerText = "📸 حفظ الصورة النهائية (بالخلفية الجديدة)"; btn.disabled = false;
             });
         }
         updateCard();

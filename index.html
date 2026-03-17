@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام الإحالة التعليمي - المستشارين</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #f8fafc; }
+        .card-shadow { box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        @media print { .no-print { display: none; } }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-6">
+
+    <div id="referral-card" class="max-w-sm w-full bg-white rounded-[2.5rem] overflow-hidden card-shadow border border-gray-100 relative">
+        
+        <div class="bg-blue-700 p-10 text-center text-white relative">
+            <div class="absolute top-4 right-4 opacity-20 text-4xl font-bold italic text-white">51Talk</div>
+            <h1 class="text-3xl font-bold mb-2">هدية خاصة!</h1>
+            <p class="text-blue-100 text-sm">برنامج إحالة الطلاب المميزين</p>
+        </div>
+
+        <div class="p-8 text-center">
+            <p class="text-gray-500 text-sm mb-1">بواسطة المستشار التعليمي:</p>
+            <h2 id="display-name" class="text-2xl font-bold text-blue-900 mb-6">اسم المستشار</h2>
+
+            <div id="qrcode" class="flex justify-center mb-6 p-4 bg-white border-2 border-dashed border-blue-200 rounded-2xl inline-block mx-auto"></div>
+
+            <div class="bg-orange-50 p-4 rounded-2xl mb-6">
+                <p class="text-orange-700 font-bold">سجل الآن واحصل على تجربة مجانية!</p>
+                <p id="display-phone" class="text-orange-600 text-sm mt-1">رقم التواصل: 000000000</p>
+            </div>
+
+            <p class="text-[10px] text-gray-400">© 2026 جميع الحقوق محفوظة للمستشار التعليمي</p>
+        </div>
+    </div>
+
+    <div class="mt-10 bg-white p-6 rounded-2xl shadow-lg border border-gray-200 w-full max-w-sm no-print">
+        <h3 class="font-bold text-blue-800 mb-4 border-b pb-2">إعدادات المستشار (تعديل سريع)</h3>
+        <div class="space-y-3">
+            <input type="text" id="input-name" placeholder="اكتب اسمك هنا" class="w-full border p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all" oninput="updateCard()">
+            <input type="text" id="input-phone" placeholder="رقم واتساب (مع مفتاح الدولة)" class="w-full border p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all" oninput="updateCard()">
+        </div>
+        <p class="text-xs text-gray-500 mt-4 leading-relaxed">
+            * بعد التعديل، قم بأخذ "Screenshot" للبطاقة بالأعلى لإرسالها للطلاب.
+        </p>
+    </div>
+
+    <script>
+        let qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "https://wa.me/",
+            width: 140,
+            height: 140,
+            colorDark : "#1e3a8a",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+
+        function updateCard() {
+            const name = document.getElementById('input-name').value || "اسم المستشار";
+            const phone = document.getElementById('input-phone').value || "000000000";
+            
+            document.getElementById('display-name').innerText = name;
+            document.getElementById('display-phone').innerText = "رقم التواصل: " + phone;
+
+            // تحديث رابط الواتساب في الـ QR Code
+            qrcode.clear();
+            qrcode.makeCode("https://wa.me/" + phone.replace(/\s/g, ''));
+        }
+        
+        // التفعيل الأولي
+        updateCard();
+    </script>
+</body>
+</html>

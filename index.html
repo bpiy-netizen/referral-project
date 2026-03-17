@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>51Talk - Perfect QR Scan</title>
+    <title>بطاقة إهداء 51Talk - نسخة حفظ مضمونه</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -11,31 +11,36 @@
     <style>
         body { 
             font-family: 'Cairo', sans-serif; 
-            background: #f0f4f8; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: radial-gradient(circle at top left, #e0f2fe 0%, #f3f4f6 50%, #dbeafe 100%);
+            min-height: 100vh; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
         .golden-card { 
             background: linear-gradient(135deg, #f6e8b1 0%, #fdf5d7 100%);
             box-shadow: 0 40px 100px rgba(30, 58, 138, 0.15); border: 12px solid white;
         }
-        /* سر الحل: جعل الـ QR حاد جداً ومتباين */
+        .course-badge { 
+            background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.9);
+        }
+        /* منع تنعيم حواف الـ QR للحفاظ على حدته عند الحفظ */
         #qrcode canvas, #qrcode img {
-            image-rendering: pixelated; /* منع التنعيم */
+            image-rendering: pixelated; 
             image-rendering: crisp-edges;
             display: block;
             margin: auto;
         }
-        .course-badge { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.9); }
         @media print { .no-print { display: none; } }
     </style>
 </head>
 <body class="p-4">
 
     <div id="referral-card" class="max-w-2xl w-full golden-card rounded-[4rem] overflow-hidden relative p-8 md:p-12 mx-auto">
+        
         <div class="flex flex-col md:flex-row items-center justify-between mb-8 gap-6">
-            <img src="logo.png" alt="51Talk" class="h-20 md:h-24 w-auto object-contain">
-            <div class="text-center bg-white/70 px-6 py-3 rounded-2xl border border-white">
-                <p class="text-[10px] text-blue-900/60 font-black mb-1">المستشار التعليمي المعتمد</p>
-                <h2 id="display-consultant" class="text-2xl font-black text-blue-950">البندري</h2>
+            <img src="logo.png" alt="51Talk" class="h-20 md:h-24 w-auto object-contain" crossorigin="anonymous">
+            
+            <div class="text-center bg-white/70 px-6 py-3 rounded-2xl border border-white" style="display: block;">
+                <p class="text-[10px] text-blue-900/60 font-black mb-1" style="display: block; text-align: center;">المستشار التعليمي المعتمد</p>
+                <h2 id="display-consultant" class="text-2xl font-black text-blue-950" style="display: block; text-align: center;">البندري</h2>
             </div>
         </div>
 
@@ -58,8 +63,8 @@
                 </div>
             </div>
 
-            <div class="bg-blue-950/10 rounded-[2.5rem] p-6 border border-blue-950/5">
-                <p class="text-xs font-black text-blue-900/70 mb-4 tracking-tighter">حدد مسارك التعليمي المفضل:</p>
+            <div class="bg-blue-950/10 rounded-[2.5rem] p-6 border border-blue-950/5 shadow-inner">
+                <p class="text-xs font-black text-blue-900/70 mb-4 tracking-tighter" style="display: block; text-align: center;">حدد مسارك التعليمي المفضل:</p>
                 <div class="flex flex-wrap justify-center gap-3">
                     <div class="course-badge px-4 py-2 rounded-full text-[10px] font-black text-blue-950 shadow-sm">💼 إنجليزية الأعمال</div>
                     <div class="course-badge px-4 py-2 rounded-full text-[10px] font-black text-blue-950 shadow-sm">🌟 المسار الكلاسيكي</div>
@@ -79,7 +84,7 @@
                 <span id="display-phone" class="text-green-700 font-black text-xl">+962 77 555 2764</span>
             </div>
 
-            <div class="flex items-center gap-12 bg-white/60 px-12 py-5 rounded-[2.5rem] border border-white/50 shadow-sm">
+            <div class="flex items-center gap-12 bg-white/60 px-12 py-5 rounded-[2.5rem] border border-white/50 shadow-sm no-print">
                 <img src="tabby.png" alt="Tabby" class="h-8 w-auto">
                 <div class="w-px h-10 bg-blue-900/10"></div>
                 <img src="tamara.png" alt="Tamara" class="h-8 w-auto">
@@ -93,8 +98,8 @@
             <input type="text" id="input-student" placeholder="اسم صديق الطالب" class="w-full bg-gray-50 border-2 border-gray-100 p-4 rounded-2xl outline-none focus:border-blue-500 font-bold" oninput="updateCard()">
             <input type="text" id="input-consultant" placeholder="اسم المستشار" class="w-full bg-gray-50 border-2 border-gray-100 p-4 rounded-2xl outline-none focus:border-blue-500 font-bold" oninput="updateCard()">
             <input type="text" id="input-phone" placeholder="962775552764" class="w-full bg-gray-50 border-2 border-gray-100 p-4 rounded-2xl outline-none focus:border-blue-500 font-bold" oninput="updateCard()">
-            <button onclick="saveCardAsImage()" class="w-full bg-blue-950 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-blue-900 transition-all">
-                📸 حفظ الصورة (دقة فائقة للسكان)
+            <button onclick="saveCardAsImage()" class="w-full bg-blue-950 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-blue-900 transition-all flex items-center justify-center gap-3">
+                <span>📸</span> حفظ الصورة بدقة عالية
             </button>
         </div>
     </div>
@@ -103,9 +108,9 @@
         let qrcode = new QRCode(document.getElementById("qrcode"), {
             width: 180,
             height: 180,
-            colorDark : "#000000", // أسود خالص للسكان
+            colorDark : "#000000",
             colorLight : "#ffffff",
-            correctLevel : QRCode.CorrectLevel.H // أعلى جودة تصحيح
+            correctLevel : QRCode.CorrectLevel.H
         });
 
         function updateCard() {
@@ -128,28 +133,30 @@
         function saveCardAsImage() {
             const card = document.getElementById('referral-card');
             const btn = event.currentTarget;
-            btn.innerText = "جاري تحسين الجودة..."; btn.disabled = true;
+            btn.innerText = "جاري الحفظ..."; btn.disabled = true;
 
-            // الانتظار قليلاً لضمان استقرار الرسم
             setTimeout(() => {
                 html2canvas(card, {
-                    scale: 4, // رفع الدقة لـ 4 أضعاف لضمان حدة الـ QR
-                    useCORS: true,
-                    backgroundColor: null,
+                    scale: 3, 
+                    useCORS: true, 
+                    backgroundColor: null, 
                     borderRadius: 40,
+                    logging: false,
                     onclone: (clonedDoc) => {
-                        // التأكد من أن النصوص والـ QR ظاهرة بوضوح في النسخة المنسوخة
-                        const clonedQR = clonedDoc.getElementById('qrcode');
-                        clonedQR.style.imageRendering = 'pixelated';
+                        // إجبار المتصفح على عرض النصوص المقلوبة بشكل صحيح في النسخة المنسوخة
+                        clonedDoc.querySelectorAll('p, h2, h3, h1').forEach(el => {
+                            el.style.display = 'block';
+                            el.style.direction = 'rtl';
+                        });
                     }
                 }).then(canvas => {
                     const link = document.createElement('a');
-                    link.download = `51Talk-PRO-Card.png`;
+                    link.download = `51Talk-GiftCard-${Date.now()}.png`;
                     link.href = canvas.toDataURL("image/png", 1.0);
                     link.click();
-                    btn.innerText = "📸 حفظ الصورة (دقة فائقة للسكان)"; btn.disabled = false;
+                    btn.innerText = "📸 حفظ الصورة بدقة عالية"; btn.disabled = false;
                 });
-            }, 600); // تأخير لضمان استقرار المعالج
+            }, 500);
         }
 
         updateCard();

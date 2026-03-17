@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بطاقة إهداء 51Talk الاحترافية - نسخة الحفظ المضمون</title>
+    <title>بطاقة إهداء 51Talk الاحترافية</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -52,9 +52,9 @@
         <div class="flex flex-col md:flex-row items-center justify-between mb-8 gap-6">
             <img src="logo.png" alt="51Talk" class="h-20 md:h-24 w-auto object-contain" crossorigin="anonymous">
             
-            <div class="text-center bg-white/70 px-6 py-3 rounded-2xl border border-white shadow-sm" style="display: block;">
-                <p class="text-[10px] text-blue-900/60 font-black uppercase tracking-widest mb-1" style="display: block;">المستشار التعليمي المعتمد</p>
-                <h2 id="display-consultant" class="text-2xl font-black text-blue-950" style="display: block;">البندري</h2>
+            <div class="text-center md:text-left bg-white/70 px-6 py-3 rounded-2xl border border-white shadow-sm">
+                <p class="text-[10px] text-blue-900/60 font-black uppercase tracking-widest">المستشار التعليمي المعتمد</p>
+                <h2 id="display-consultant" class="text-2xl font-black text-blue-950">البندري</h2>
             </div>
         </div>
 
@@ -78,7 +78,7 @@
             </div>
 
             <div class="bg-blue-950/10 rounded-[2.5rem] p-6 border border-blue-950/5 shadow-inner">
-                <p class="text-xs font-black text-blue-900/70 mb-4 tracking-tighter" style="display: block;">حدد مسارك التعليمي المفضل:</p>
+                <p class="text-xs font-black text-blue-900/70 mb-4 tracking-tighter">حدد مسارك التعليمي المفضل:</p>
                 <div class="flex flex-wrap justify-center gap-3">
                     <div class="course-badge px-4 py-2 rounded-full text-[10px] md:text-xs font-black text-blue-950 shadow-sm">💼 إنجليزية الأعمال</div>
                     <div class="course-badge px-4 py-2 rounded-full text-[10px] md:text-xs font-black text-blue-950 shadow-sm">🌟 المسار الكلاسيكي</div>
@@ -141,24 +141,18 @@
             qrcode.makeCode("https://wa.me/" + cleanPhone);
         }
 
+        // وظيفة الحفظ كصورة
         function saveCardAsImage() {
             const card = document.getElementById('referral-card');
             const btn = event.currentTarget;
             btn.innerText = "جاري المعالجة...";
             btn.disabled = true;
 
-            // إعدادات محسنة لتحويل الصورة
             html2canvas(card, {
-                scale: 3, // جودة عالية
-                useCORS: true, // تحميل الصور الخارجية
-                backgroundColor: null, // شفافية
-                borderRadius: 40,
-                onclone: (clonedDoc) => {
-                    // تأكيد تنسيق النصوص في النسخة المستنسخة قبل التصوير
-                    clonedDoc.querySelectorAll('p, h2').forEach(el => {
-                        el.style.display = 'block';
-                    });
-                }
+                scale: 3, // جودة عالية جداً
+                useCORS: true, // للسماح بتحميل الصور الخارجية
+                backgroundColor: null, // خلفية شفافة حول البطاقة
+                borderRadius: 40
             }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = `Gift-Card-51Talk-${new Date().getTime()}.png`;

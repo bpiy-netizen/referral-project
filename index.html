@@ -3,122 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>51Talk - Final Image Background Fix</title>
+    <title>51Talk - Final Professional Fix</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Cairo', sans-serif; background: #f0f2f5; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; }
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            background: #f3f4f6;
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .golden-card { 
+            /* الحل الجذري: خلفية رخامية فاتحة لضمان تباين النصوص */
+            background-image: url('https://img.freepik.com/free-vector/modern-liquid-marble-abstract-background-design-fluid-shapes-soft-pastel-colors-vector-illustration_1035-23466.jpg');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 40px 100px rgba(30, 58, 138, 0.2);
+            border: 12px solid white;
+        }
+        #qrcode canvas, #qrcode img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            display: block;
+            margin: auto;
+        }
+        .qr-container {
+            background: white;
+            padding: 15px;
+            border-radius: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 8px solid rgba(30, 58, 138, 0.05);
+        }
         
-        /* الحاوية الرئيسية للبطاقة */
-        #referral-card {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            border-radius: 3rem;
-            overflow: hidden;
-            background: white;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-        }
-
-        /* طبقة الخلفية كصورة لضمان الحفظ الصحيح */
-        .card-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1;
-            object-fit: cover;
-        }
-
-        /* طبقة المحتوى فوق الخلفية */
-        .content-layer {
-            position: relative;
-            z-index: 2;
-            padding: 2.5rem 1.5rem;
-            text-align: center;
-        }
-
-        .qr-wrapper {
-            background: white;
-            padding: 12px;
-            border-radius: 2rem;
-            display: inline-block;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-
+        /* تأثير ظل للنصوص لضمان بروزها على الخلفية الجديدة */
+        .text-strong-shadow { text-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        
         @media print { .no-print { display: none; } }
     </style>
 </head>
 <body class="p-4">
+    
+    <div id="referral-card" class="max-w-2xl w-full golden-card rounded-[4rem] overflow-hidden p-8 md:p-12 mx-auto text-center z-10">
+        <div class="flex flex-col md:flex-row items-center justify-between mb-8 gap-6">
+            <img src="logo.png" alt="51Talk" class="h-20 w-auto object-contain" crossorigin="anonymous">
+            <div class="bg-white px-8 py-3 rounded-2xl border border-blue-100 shadow-sm">
+                <h2 id="display-consultant" class="text-2xl font-black text-blue-950 stable-arabic-fix">البندري</h2>
+            </div>
+        </div>
 
-    <div id="referral-card">
-        <img src="https://img.freepik.com/free-vector/blue-curve-background_53876-113111.jpg" class="card-bg" crossorigin="anonymous">
-        
-        <div class="content-layer">
-            <div class="flex items-center justify-between mb-6">
-                <img src="logo.png" alt="51Talk" class="h-12 w-auto object-contain" crossorigin="anonymous">
-                <div class="bg-white/90 px-6 py-2 rounded-xl shadow-sm border border-blue-50">
-                    <h2 id="display-consultant" class="text-lg font-black text-blue-900">البندري</h2>
+        <div class="mb-8">
+            <h3 class="text-blue-900 font-bold mb-3 stable-arabic-fix text-strong-shadow">إهداء حصري وخاص من <span id="display-student" class="text-red-700 font-black">........</span></h3>
+            <h1 class="text-3xl md:text-5xl font-black text-blue-950 leading-tight mb-10 stable-arabic-fix text-strong-shadow drop-shadow-sm">ابدأ تعلّم اللغة الانجليزية مع 51talk</h1>
+            
+            <div class="grid grid-cols-2 gap-4 mb-8">
+                <div class="flex items-center gap-3 bg-white p-4 rounded-2xl border border-white text-right shadow-sm">
+                    <span class="text-2xl stable-arabic-fix">🌍</span> <p class="text-blue-950 font-bold text-[10px] md:text-xs stable-arabic-fix">منصة عالمية ومعلمين أجانب</p>
+                </div>
+                <div class="flex items-center gap-3 bg-white p-4 rounded-2xl border border-white text-right shadow-sm">
+                    <span class="text-2xl stable-arabic-fix">🎁</span> <p class="text-blue-950 font-bold text-[10px] md:text-xs stable-arabic-fix">حصة تقييمية مجانية</p>
+                </div>
+                <div class="flex items-center gap-3 bg-white p-4 rounded-2xl border border-white text-right shadow-sm">
+                    <span class="text-2xl stable-arabic-fix">🗣️</span> <p class="text-blue-950 font-bold text-[10px] md:text-xs stable-arabic-fix">التركيز على التحدث بطلاقة</p>
+                </div>
+                <div class="flex items-center gap-3 bg-white p-4 rounded-2xl border border-white text-right shadow-sm">
+                    <span class="text-2xl stable-arabic-fix">⏳</span> <p class="text-blue-950 font-bold text-[10px] md:text-xs stable-arabic-fix">حصص فردية وأوقات مرنة</p>
                 </div>
             </div>
 
-            <div class="mb-6">
-                <h3 class="text-blue-800 font-bold mb-2 text-sm">إهداء حصري وخاص من <span id="display-student" class="text-red-600 font-black">........</span></h3>
-                <h1 class="text-3xl font-black text-blue-950 leading-tight mb-8">ابدأ تعلّم اللغة الانجليزية مع 51talk</h1>
-                
-                <div class="grid grid-cols-2 gap-3 mb-6">
-                    <div class="flex items-center gap-2 bg-white/95 p-3 rounded-xl shadow-sm border border-white">
-                        <span class="text-xl">🌍</span> <p class="text-blue-950 font-bold text-[10px]">منصة عالمية ومعلمين أجانب</p>
-                    </div>
-                    <div class="flex items-center gap-2 bg-white/95 p-3 rounded-xl shadow-sm border border-white">
-                        <span class="text-xl">🎁</span> <p class="text-blue-950 font-bold text-[10px]">حصة تقييمية مجانية</p>
-                    </div>
-                    <div class="flex items-center gap-2 bg-white/95 p-3 rounded-xl shadow-sm border border-white">
-                        <span class="text-xl">🗣️</span> <p class="text-blue-950 font-bold text-[10px]">التركيز على التحدث بطلاقة</p>
-                    </div>
-                    <div class="flex items-center gap-2 bg-white/95 p-3 rounded-xl shadow-sm border border-white">
-                        <span class="text-xl">⏳</span> <p class="text-blue-950 font-bold text-[10px]">حصص فردية وأوقات مرنة</p>
-                    </div>
-                </div>
-
-                <div class="bg-blue-950/5 rounded-3xl p-4 flex flex-wrap justify-center gap-2 border border-white/50">
-                    <div class="bg-blue-900 text-white px-4 py-1.5 rounded-full text-[10px] font-black">💼 إنجليزية الأعمال</div>
-                    <div class="bg-blue-700 text-white px-4 py-1.5 rounded-full text-[10px] font-black">🌟 المسار الكلاسيكي</div>
+            <div class="bg-blue-900/10 rounded-[2.5rem] p-6 border border-blue-900/5 shadow-inner">
+                <div class="flex flex-wrap justify-center gap-3">
+                    <div class="bg-blue-950 text-white px-5 py-2 rounded-full text-xs font-black shadow-sm">💼 إنجليزية الأعمال</div>
+                    <div class="bg-blue-800 text-white px-5 py-2 rounded-full text-xs font-black shadow-sm">🌟 المسار الكلاسيكي</div>
+                    <div class="bg-blue-700 text-white px-5 py-2 rounded-full text-xs font-black shadow-sm">🎓 تحضير الايلتس</div>
                 </div>
             </div>
+        </div>
 
-            <div class="mt-4">
-                <div class="qr-wrapper mb-4">
-                    <div id="qrcode"></div>
-                </div>
-                <p class="text-blue-950 font-black mb-3 text-lg italic">امسح الكود للحجز المباشر</p>
-                
-                <div class="inline-flex items-center gap-2 bg-white/90 px-6 py-2.5 rounded-full border border-green-100 shadow-sm mb-6">
-                    <span id="display-phone" class="text-blue-900 font-black text-xl">+962 77 555 2764</span>
-                </div>
+        <div class="flex flex-col items-center border-t border-blue-900/10 pt-10">
+            <div class="qr-container mb-6">
+                <div id="qrcode"></div>
+            </div>
+            <p class="text-blue-950 font-black mb-4 text-xl italic stable-arabic-fix">امسح الكود للحجز المباشر</p>
+            
+            <div class="flex items-center gap-3 mb-10 bg-white/95 px-8 py-3 rounded-full border border-green-200 shadow-md">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span id="display-phone" class="text-green-700 font-black text-2xl tracking-tighter stable-arabic-fix">+962 77 555 2764</span>
+            </div>
 
-                <div class="flex items-center justify-center gap-8 bg-white/50 py-3 rounded-2xl">
-                    <img src="tabby.png" class="h-6 w-auto" crossorigin="anonymous">
-                    <img src="tamara.png" class="h-6 w-auto" crossorigin="anonymous">
-                </div>
+            <div class="flex items-center gap-12 bg-white/80 px-12 py-5 rounded-[2.5rem] border border-white shadow-sm">
+                <img src="tabby.png" alt="Tabby" class="h-8 w-auto" crossorigin="anonymous">
+                <div class="w-px h-10 bg-blue-900/10"></div>
+                <img src="tamara.png" alt="Tamara" class="h-8 w-auto" crossorigin="anonymous">
             </div>
         </div>
     </div>
 
-    <div class="mt-6 w-full max-w-md bg-white p-6 rounded-3xl shadow-xl no-print">
-        <div class="space-y-3">
-            <input type="text" id="input-student" placeholder="اسم صديق الطالب" class="w-full bg-gray-50 border p-3 rounded-xl text-right font-bold" oninput="updateCard()">
-            <input type="text" id="input-consultant" placeholder="اسم المستشار" class="w-full bg-gray-50 border p-3 rounded-xl text-right font-bold" oninput="updateCard()">
-            <input type="text" id="input-phone" placeholder="962775552764" class="w-full bg-gray-50 border p-3 rounded-xl text-right font-bold" oninput="updateCard()">
-            <button onclick="saveCard()" class="w-full bg-blue-950 text-white font-black py-4 rounded-xl shadow-lg hover:bg-blue-900 transition-all">
-                📸 حفظ الصورة النهائية (بجودة ثابتة)
+    <div class="mt-8 bg-white p-8 rounded-[2.5rem] shadow-2xl border border-white w-full max-w-md no-print mx-auto mb-10 text-center relative z-20">
+        <h3 class="font-black text-blue-900 mb-6 border-b pb-4">تخصيص البيانات والرسالة</h3>
+        <div class="space-y-4">
+            <input type="text" id="input-student" placeholder="اسم صديق الطالب" class="w-full bg-gray-50 border-2 border-gray-100 p-4 rounded-2xl outline-none focus:border-blue-500 font-bold" oninput="updateCard()">
+            <input type="text" id="input-consultant" placeholder="اسم المستشار" class="w-full bg-gray-50 border-2 border-gray-100 p-4 rounded-2xl outline-none focus:border-blue-500 font-bold" oninput="updateCard()">
+            <input type="text" id="input-phone" placeholder="962775552764" class="w-full bg-gray-50 border-2 border-gray-100 p-4 rounded-2xl outline-none focus:border-blue-500 font-bold" oninput="updateCard()">
+            <button onclick="saveCard()" class="w-full bg-blue-950 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-blue-900 transition-all flex items-center justify-center gap-3">
+                <span>📸</span> حفظ الصورة (حل مشكلة التداخل)
             </button>
         </div>
     </div>
 
     <script>
         let qrcode = new QRCode(document.getElementById("qrcode"), {
-            width: 160, height: 160, colorDark : "#172554", colorLight : "#ffffff", correctLevel : QRCode.CorrectLevel.H
+            width: 200, height: 200, colorDark : "#172554", colorLight : "#ffffff", correctLevel : QRCode.CorrectLevel.H
         });
 
         function updateCard() {
@@ -132,26 +127,36 @@
             
             const cleanPhone = phone.replace(/\s/g, '').replace('+', '');
             qrcode.clear();
-            qrcode.makeCode(`https://wa.me/${cleanPhone}?text=${encodeURIComponent('مرحبا ' + consultant + '، انا من طرف ' + student + '، أرغب في حجز حصة تجريبية')}`);
+            qrcode.makeCode(`https://wa.me/${cleanPhone}?text=${encodeURIComponent('مرحبا استاذ ' + consultant + '، انا من طرف الأخ ' + student + '، أرغب في حجز حصة تجريبية')}`);
         }
 
         function saveCard() {
             const card = document.getElementById('referral-card');
             const btn = event.currentTarget;
-            btn.innerText = "جاري الحفظ..."; btn.disabled = true;
+            btn.innerText = "جاري المعالجة..."; btn.disabled = true;
 
-            html2canvas(card, {
-                scale: 3,
-                useCORS: true,
-                allowTaint: true,
-                backgroundColor: null,
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `51Talk-GiftCard-Official.png`;
-                link.href = canvas.toDataURL("image/png");
-                link.click();
-                btn.innerText = "📸 حفظ الصورة النهائية (بجودة ثابتة)"; btn.disabled = false;
-            });
+            setTimeout(() => {
+                html2canvas(card, {
+                    scale: 3, 
+                    useCORS: true, 
+                    backgroundColor: "#f3f4f6", // تعيين لون خلفية ثابت
+                    borderRadius: 40,
+                    logging: false,
+                    onclone: (clonedDoc) => {
+                        // إجبار نصوص الـ Fix على الاتجاه والمحاذاة الصحيحة في النسخة المحفوظة
+                        clonedDoc.querySelectorAll('p, h2, h3, h1, span, svg').forEach(el => {
+                            el.style.direction = 'rtl';
+                            el.style.unicodeBidi = 'isolate';
+                        });
+                    }
+                }).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = `51Talk-GiftCard-Fixed.png`;
+                    link.href = canvas.toDataURL("image/png", 1.0);
+                    link.click();
+                    btn.innerText = "📸 حفظ الصورة (حل مشكلة التداخل)"; btn.disabled = false;
+                });
+            }, 500);
         }
         updateCard();
     </script>
